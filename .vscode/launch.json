@@ -18,6 +18,66 @@
         "<node_internals>/**"
       ],
       "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift encoding",
+      "program": "${workspaceFolder}/test/redshift/encoding.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "debug"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift store",
+      "program": "${workspaceFolder}/test/redshift/store.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "verbose"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift recall",
+      "program": "${workspaceFolder}/test/redshift/recall.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "verbose"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift retrieve",
+      "program": "${workspaceFolder}/test/redshift/retrieve.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "verbose"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift dull",
+      "program": "${workspaceFolder}/test/redshift/dull.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "verbose"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "redshift transfers",
+      "program": "${workspaceFolder}/test/redshift/transfers.js",
+      "outputCapture": "std",
+      "env": {
+        "LOG_LEVEL": "verbose"
+      }
     }
   ]
 }
