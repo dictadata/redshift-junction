@@ -6,10 +6,7 @@
   "scripts": {
     "test": "node test/main.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dictadata/redshift-junction.git"
-  },
+  "repository": "github:dictadata/redshift-junction",
   "keywords": [
     "storage",
     "junction",
@@ -23,7 +20,7 @@
   },
   "homepage": "https://github.com/dictadata/redshift-junction#readme",
   "dependencies": {
-    "@dictadata/storage-junctions": "^0.4.0",
+    "@dictadata/storage-junctions": "^0.5.0",
     "odbc": "^2.2.2",
     "sqlstring": "^2.3.1",
     "yn": "^3.1.1"
