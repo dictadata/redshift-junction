@@ -1,0 +1,6 @@
+{
+  "indent_scripts": "keep",
+  "multiline-import-specifiers": "warn",
+  "lines-around-comment": "off",
+  "lines-around-directive": "off"
+}

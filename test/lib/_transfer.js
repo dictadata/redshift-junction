@@ -5,10 +5,8 @@
 
 const storage = require('@dictadata/storage-junctions');
 const logger = require('../logger');
-const stream = require('stream');
-const util = require('util');
+const stream = require('stream/promises');
 
-const pipeline = util.promisify(stream.pipeline);
 
 /**
  * transfer fucntion
@@ -36,7 +34,7 @@ module.exports = async function (options) {
     var writer = j2.getWriteStream(options.writer);
 
     logger.info(">>> start pipe");
-    await pipeline(reader, writer);
+    await stream.pipeline(reader, writer);
 
     logger.info(">>> completed");
   }

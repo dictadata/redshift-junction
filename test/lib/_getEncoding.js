@@ -18,7 +18,7 @@ module.exports = async function (options) {
       logger.verbose(JSON.stringify(encoding));
 
       if (options.OutputFile) {
-        fs.writeFileSync(options.OutputFile, JSON.stringify(encoding,null,"  "));
+        await fs.writeFile(options.OutputFile, JSON.stringify(encoding, null, "  "));
         logger.verbose(options.OutputFile);
       }
     }

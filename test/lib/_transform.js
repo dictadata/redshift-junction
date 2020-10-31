@@ -7,10 +7,8 @@ const storage = require('@dictadata/storage-junctions');
 const Field = storage.Field;
 const Types = storage.Types;
 const logger = require('../logger');
-const stream = require('stream');
-const util = require('util');
+const stream = require('stream/promises');
 
-const pipeline = util.promisify(stream.pipeline);
 
 module.exports = async function (options) {
 
@@ -22,8 +20,8 @@ module.exports = async function (options) {
     logger.debug(">>> get source encoding (codify)");
     let encoding = await j1.getEncoding();
 
-    for (let [name,value] of Object.entries(options.transforms.inject)) {
-      encoding.add(new Field({name: name, type: Types.storageType(value)}));
+    for (let [name, value] of Object.entries(options.transforms.inject)) {
+      encoding.add(new Field({ name: name, type: Types.storageType(value) }));
     }
 
     logger.debug(">>> encoding results");
@@ -40,7 +38,7 @@ module.exports = async function (options) {
     var writer = j2.getWriteStream();
 
     logger.info(">>> start pipe");
-    await pipeline(reader, transform, writer);
+    await stream.pipeline(reader, transform, writer);
 
     logger.info(">>> completed");
   }

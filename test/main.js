@@ -7,10 +7,8 @@ const storage = require("@dictadata/storage-junctions");
 const RedshiftJunction = require("../lib/redshift");
 const logger = require('./logger');
 
-const stream = require('stream');
-const util = require('util');
+const stream = require('stream/promises');
 
-const pipeline = util.promisify(stream.pipeline);
 
 console.log("=== Tests: RedshiftJunction");
 
@@ -24,7 +22,7 @@ async function testStream() {
   console.log(">>> create junction");
   var junction = storage.activate({
     smt: {
-      model:"redshift",
+      model: "redshift",
       locus: "somewhere",
       schema: "container",
       key: "*"
@@ -38,7 +36,7 @@ async function testStream() {
   var writer = junction.getWriteStream({});
 
   //console.log(">>> start pipe");
-  //await pipeline(reader,writer);
+  //await stream.pipeline(reader,writer);
 
   await junction.relax();
 

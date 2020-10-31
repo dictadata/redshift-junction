@@ -6,11 +6,9 @@
 const storage = require('@dictadata/storage-junctions');
 const logger = require('../logger');
 
-const stream = require('stream');
-const util = require('util');
-const fs = require('fs');
+const fs = require('fs/promises');
+const stream = require('stream/promises');
 
-const pipeline = util.promisify(stream.pipeline);
 
 module.exports = async function (options) {
 
@@ -24,21 +22,21 @@ module.exports = async function (options) {
 
     logger.debug(JSON.stringify(encoding1, null, "  "));
     logger.info(">>> save encoding to " + options.outputFile1);
-    fs.writeFileSync(options.outputFile1, JSON.stringify(encoding1,null,"  "), "utf8");
+    await fs.writeFile(options.outputFile1, JSON.stringify(encoding1, null, "  "), "utf8");
 
     // *** stream some data to the codifier
     logger.info(">>> create streams");
-    var reader = j1.getReadStream({max_read: (options.source.options && options.source.options.max_read) || 100 });
+    var reader = j1.getReadStream({ max_read: (options.source.options && options.source.options.max_read) || 100 });
     var codify = j1.getCodifyWriter(options.codify || null);
 
     logger.info(">>> start pipe");
-    await pipeline(reader, codify);
+    await stream.pipeline(reader, codify);
 
     let encoding2 = await codify.getEncoding();
 
     logger.debug(JSON.stringify(encoding2, null, "  "));
     logger.info(">>> save encoding to " + options.outputFile2);
-    fs.writeFileSync(options.outputFile2, JSON.stringify(encoding2,null,"  "), "utf8");
+    await fs.writeFile(options.outputFile2, JSON.stringify(encoding2, null, "  "), "utf8");
 
     logger.info(">>> completed");
   }
