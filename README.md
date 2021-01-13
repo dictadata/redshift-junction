@@ -1,6 +1,6 @@
 # @dictadata/redshift-junction
 
-A storage junction for Amazon Redshift database access using ODBC.
+dictadata storage-junction plug-in for Amazon Redshift database access using ODBC.
 
 ## Installation
 
@@ -8,7 +8,7 @@ Requires Redshift ODBC drivers.
 
 Requires node-gyp and a C++ compiler to build the NPM odbc package.
 
-## Junction Plugin
+## Storage-Junction Plugin
 
 Register the junction when initializing the app.
 
@@ -24,7 +24,7 @@ Then a junction can be created elsewhere in the app using a SMT.
 ```
 const storage = require("@dictadata/storage-junctions");
 
-var junction = storage.activate({
+var junction = await storage.activate({
   smt: {
     model:"redshift",
     locus: "DSN=xyz",

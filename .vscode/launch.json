@@ -5,22 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "Run Test",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "test"
-      ],
-      "port": 9229,
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "runtimeArgs": ["run-script", "test"],
+      "skipFiles": ["<node_internals>/**"],
       "outputCapture": "std"
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift encoding",
       "program": "${workspaceFolder}/test/redshift/encoding.js",
@@ -30,7 +24,7 @@
       }
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift store",
       "program": "${workspaceFolder}/test/redshift/store.js",
@@ -40,7 +34,7 @@
       }
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift recall",
       "program": "${workspaceFolder}/test/redshift/recall.js",
@@ -50,7 +44,7 @@
       }
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift retrieve",
       "program": "${workspaceFolder}/test/redshift/retrieve.js",
@@ -60,7 +54,7 @@
       }
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift dull",
       "program": "${workspaceFolder}/test/redshift/dull.js",
@@ -70,7 +64,7 @@
       }
     },
     {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "redshift transfers",
       "program": "${workspaceFolder}/test/redshift/transfers.js",
