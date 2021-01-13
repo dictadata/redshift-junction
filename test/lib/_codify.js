@@ -13,7 +13,7 @@ const stream = require('stream/promises');
 module.exports = async function (options) {
 
   logger.info(">>> create junction");
-  var j1 = storage.activate(options.source.smt, options.source.options);
+  var j1 = await storage.activate(options.source.smt, options.source.options);
 
   try {
     // *** the normal way is to ask the junction to do it
@@ -26,7 +26,7 @@ module.exports = async function (options) {
 
     // *** stream some data to the codifier
     logger.info(">>> create streams");
-    var reader = j1.getReadStream({ max_read: (options.source.options && options.source.options.max_read) || 100 });
+    var reader = j1.createReadStream({ max_read: (options.source.options && options.source.options.max_read) || 100 });
     var codify = j1.getCodifyWriter(options.codify || null);
 
     logger.info(">>> start pipe");

@@ -5,7 +5,7 @@
 
 const winston = require('winston');
 
-const _level = process.env.LOG_LEVEL || 'verbose';
+const _level = process.env.LOG_LEVEL || 'info';
 
 winston.configure({
   level: _level,

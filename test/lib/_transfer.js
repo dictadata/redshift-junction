@@ -14,8 +14,8 @@ const stream = require('stream/promises');
 module.exports = async function (options) {
 
   logger.info(">>> create junctions");
-  var j1 = storage.activate(options.source.smt, options.source.options);
-  var j2 = storage.activate(options.destination.smt, options.destination.options);
+  var j1 = await storage.activate(options.source.smt, options.source.options);
+  var j2 = await storage.activate(options.destination.smt, options.destination.options);
 
   try {
     logger.info(">>> get source encoding (codify)");
@@ -30,8 +30,8 @@ module.exports = async function (options) {
       logger.warn("could not create storage schema, maybe it already exists");
 
     logger.info(">>> create streams");
-    var reader = j1.getReadStream(options.reader);
-    var writer = j2.getWriteStream(options.writer);
+    var reader = j1.createReadStream(options.reader);
+    var writer = j2.createWriteStream(options.writer);
 
     logger.info(">>> start pipe");
     await stream.pipeline(reader, writer);

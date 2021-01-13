@@ -20,7 +20,7 @@ async function testStream() {
   console.log("=== testStream");
 
   console.log(">>> create junction");
-  var junction = storage.activate({
+  var junction = await storage.activate({
     smt: {
       model: "redshift",
       locus: "somewhere",
@@ -32,8 +32,8 @@ async function testStream() {
   });
 
   console.log(">>> create streams");
-  var reader = junction.getReadStream({});
-  var writer = junction.getWriteStream({});
+  var reader = junction.createReadStream({});
+  var writer = junction.createWriteStream({});
 
   //console.log(">>> start pipe");
   //await stream.pipeline(reader,writer);

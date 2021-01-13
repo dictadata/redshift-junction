@@ -5,12 +5,12 @@
 
 const storage = require('@dictadata/storage-junctions');
 const logger = require('../logger');
-const fs = require('fs');
+const fs = require('fs/promises');
 
 module.exports = async function (options) {
 
   logger.info(">>> create junction");
-  var junction = storage.activate(options.source.smt, options.source.options);
+  var junction = await storage.activate(options.source.smt, options.source.options);
 
   try {
     let encoding = JSON.parse(await fs.readFile("./test/data/foo_encoding.json", "utf8"));
