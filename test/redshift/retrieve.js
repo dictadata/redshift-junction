@@ -4,10 +4,9 @@
 "use strict";
 
 const storage = require("@dictadata/storage-junctions");
+const { logger } = require("@dictadata/storage-junctions").utils;
+const { retrieve } = require("@dictadata/storage-junctions").test;
 const RedshiftJunction = require("../../lib/redshift");
-
-const retrieve = require('../lib/_retrieve');
-const logger = require('../logger');
 
 logger.info("=== Test: redshift");
 
@@ -55,4 +54,6 @@ async function tests() {
 
 }
 
-tests();
+(() => {
+  await tests();
+})();

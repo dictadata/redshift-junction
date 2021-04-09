@@ -1,29 +1,28 @@
 {
   "name": "@dictadata/redshift-junction",
-  "version": "1.2.0",
+  "version": "1.7.1",
   "description": "Storage junction for Amazon Redshift database access.",
-  "main": "index.js",
+  "main": "storage/index.js",
   "scripts": {
     "test": "node test/main.js"
   },
-  "repository": "github:dictadata/redshift-junction",
+  "repository": "gitlab:dictadata/js/redshift-junction",
   "keywords": [
     "storage",
     "junction",
-    "redshift",
-    "odbc"
+    "redshift"
   ],
   "author": "Drew O. Letcher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dictadata/redshift-junction/issues"
+    "url": "https://github.com/dictadata/js/redshift-junction/issues"
   },
-  "homepage": "https://github.com/dictadata/redshift-junction#readme",
+  "homepage": "https://github.com/dictadata/js/redshift-junction#readme",
   "engines": {
     "node": ">=15.0.1"
   },
   "dependencies": {
-    "@dictadata/storage-junctions": "^1.2.6",
+    "@dictadata/storage-junctions": "^1.7.3",
     "odbc": "^2.3.5",
     "sqlstring": "^2.3.2",
     "yn": "^3.1.1"

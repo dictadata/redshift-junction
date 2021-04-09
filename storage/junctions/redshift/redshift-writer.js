@@ -3,7 +3,8 @@
  */
 "use strict";
 
-const { StorageWriter, StorageError, logger } = require('@dictadata/storage-junctions');
+const { StorageWriter, StorageError } = require('@dictadata/storage-junctions');
+const { logger } = require('@dictadata/storage-junctions').utils;
 
 
 module.exports = class RedshiftWriter extends StorageWriter {

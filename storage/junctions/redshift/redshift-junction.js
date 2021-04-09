@@ -3,14 +3,13 @@
  */
 "use strict";
 
-const {
-  StorageJunction, StorageResults, StorageError, Engram, logger
-} = require('@dictadata/storage-junctions');
+const { StorageJunction, StorageResults, StorageError, Engram } = require('@dictadata/storage-junctions');
+const { logger } = require('@dictadata/storage-junctions').utils;
 
-const RedshiftReader = require("./reader");
-const RedshiftWriter = require("./writer");
-const encoder = require("./encoder");
-const sqlQuery = require("./sql_query");
+const RedshiftReader = require("./redshift-reader");
+const RedshiftWriter = require("./redshift-writer");
+const encoder = require("./redshift-encoder");
+const queryEncoder = require("./redshift-query-encoder");
 
 const odbc = require('odbc');
 
@@ -114,7 +113,7 @@ module.exports = class RedshiftJunction extends StorageJunction {
       engram.replace(encoding);
 
       // create table
-      let sql = sqlQuery.sqlCreateTable(engram);
+      let sql = queryEncoder.sqlCreateTable(engram);
       let results = await conn.query(sql);
 
       conn.close();
@@ -143,7 +142,7 @@ module.exports = class RedshiftJunction extends StorageJunction {
       if (Object.keys(this.engram.fields).length == 0)
         await this.getEncoding();
 
-      let sql = sqlQuery.sqlInsert(this.engram, construct);
+      let sql = queryEncoder.sqlInsert(this.engram, construct);
       let results = await this.query(sql);
 
       // check if row was inserted
@@ -172,7 +171,7 @@ module.exports = class RedshiftJunction extends StorageJunction {
       if (Object.keys(this.engram.fields).length == 0)
         await this.getEncoding();
 
-      let sql = "SELECT * FROM " + this.engram.smt.schema + sqlQuery.sqlWhereFromKey(this.engram, options);
+      let sql = "SELECT * FROM " + this.engram.smt.schema + queryEncoder.sqlWhereFromKey(this.engram, options);
       let rows = await this.query(sql);
 
       return new StorageResults( (rows.length > 0) ? "ok" : "not found", rows[0]);
@@ -195,7 +194,7 @@ module.exports = class RedshiftJunction extends StorageJunction {
       if (Object.keys(this.engram.fields).length == 0)
         await this.getEncoding();
 
-      let sql = sqlQuery.sqlSelectWithPattern(this.engram, pattern);
+      let sql = queryEncoder.sqlSelectWithPattern(this.engram, pattern);
       let rows = await this.query(sql);
 
       return new StorageResults((rows.length > 0) ? "retreived" : "not found", rows);
@@ -223,7 +222,7 @@ module.exports = class RedshiftJunction extends StorageJunction {
       let results = null;
       if (this.engram.keyof === 'list' || this.engram.keyof === 'all') {
         // delete construct by ID
-        let sql = "DELETE FROM " + this.engram.smt.schema + sqlQuery.sqlWhereFromKey(this.engram, options);
+        let sql = "DELETE FROM " + this.engram.smt.schema + queryEncoder.sqlWhereFromKey(this.engram, options);
         results = await this.query(sql);
       }
       else {

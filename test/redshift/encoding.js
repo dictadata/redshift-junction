@@ -4,11 +4,9 @@
 "use strict";
 
 const storage = require("@dictadata/storage-junctions");
+const { logger } = require("@dictadata/storage-junctions").utils;
+const { getEncoding, createSchema } = require("@dictadata/storage-junctions").test;
 const RedshiftJunction = require("../../lib/redshift");
-
-const getEncoding = require('../lib/_getEncoding');
-const putEncoding = require('../lib/_putEncoding');
-const logger = require('../logger');
 
 logger.info("=== Test: redshift");
 
@@ -19,7 +17,7 @@ storage.use("redshift", RedshiftJunction);
 async function tests() {
 
   logger.info("=== redshift putEncoding");
-  await putEncoding({
+  await createSchema({
     source: {
       smt: "redshift|DSN=drewlab|foo_schema|*",
       options: {
@@ -41,4 +39,6 @@ async function tests() {
 
 }
 
-tests();
+(() => {
+  await tests();
+})();

@@ -3,7 +3,8 @@
  */
 "use strict";
 
-const { StorageReader, logger } = require('@dictadata/storage-junctions');
+const { StorageReader } = require('@dictadata/storage-junctions');
+const { logger } = require('@dictadata/storage-junctions').utils;
 
 
 module.exports = class RedshiftReader extends StorageReader {

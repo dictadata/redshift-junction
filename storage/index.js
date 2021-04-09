@@ -3,5 +3,5 @@
  */
 "use strict";
 
-var RedshiftJunction = require("./lib/redshift");
+var RedshiftJunction = require("./junctions/redshift");
 module.exports = RedshiftJunction;

@@ -1,11 +1,11 @@
 /**
- * redshift/encoder
+ * redshift/query-encoder
  */
 "use strict";
 
-const encoder = require('./encoder');
+const encoder = require('./redshift-encoder');
 const sqlString = require('sqlstring');
-const isoString = require('../isostring');
+const { isoString } = require('@dictadata/storage-junctions').utils;
 
 function escapeId(id) {
   return '"' + id + '"';
