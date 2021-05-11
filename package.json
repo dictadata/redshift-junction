@@ -1,6 +1,6 @@
 {
   "name": "@dictadata/redshift-junction",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Storage junction for Amazon Redshift database access.",
   "main": "storage/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "node": ">=15.0.1"
   },
   "dependencies": {
-    "@dictadata/storage-junctions": "^1.7.3",
+    "@dictadata/storage-junctions": "^1.7.5",
     "odbc": "^2.3.5",
     "sqlstring": "^2.3.2",
     "yn": "^4.0.0"

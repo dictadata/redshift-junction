@@ -16,6 +16,20 @@ const odbc = require('odbc');
 
 module.exports = class RedshiftJunction extends StorageJunction {
 
+    // storage capabilities, sub-class must override
+  capabilities = {
+    filesystem: false, // storage source is filesystem
+    sql: true,        // storage source is SQL
+    keystore: false,   // supports key-value storage
+
+    encoding: true,   // get encoding from source
+    reader: true,     // stream reader
+    writer: true,     // stream writer
+    store: true,      // store/recall individual constructs
+    query: true,      // select/filter data at source
+    aggregate: false   // aggregate data at source
+  }
+
   /**
    *
    * @param {*} SMT 'redshift|host=address;user=name;password=xyz;database=dbname;...|table|key' or an Engram object
